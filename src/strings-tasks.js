@@ -131,10 +131,12 @@ function extractEmails(str) {
 }
 
 function encodeToRot13(str) {
-  return str.replace(/[A-Za-z]/g, function (c) {
-    const base = c <= 'Z' ? 65 : 97;
-    return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
-  });
+  return str.replace(/[A-Za-z]/g, (c) =>
+    String.fromCharCode(
+      ((c.charCodeAt(0) - (c <= 'Z' ? 65 : 97) + 13) % 26) +
+        (c <= 'Z' ? 65 : 97)
+    )
+  );
 }
 
 function getCardId(value) {
